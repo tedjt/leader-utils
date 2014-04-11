@@ -1,5 +1,5 @@
 {
-  "name": "employee-count",
+  "name": "leader-utils",
   "version": "0.0.1",
   "description": "Utilities to extact keys and compare leader strings",
   "main": "index.js",
