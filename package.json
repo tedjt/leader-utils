@@ -1,0 +1,29 @@
+{
+  "name": "employee-count",
+  "version": "0.0.1",
+  "description": "Utilities to extact keys and compare leader strings",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tedjt/leader-utils.git"
+  },
+  "keywords": [
+    "utils",
+    "leader"
+  ],
+  "author": "Ted Tomlinson",
+  "license": "MIT",
+  "dependencies": {
+    "obj-case": "git://github.com/tedjt/obj-case",
+    "levenshtein": "~1.0.4",
+    "employee-count": "https://bitbucket.org/zumbino/employee-count/get/master.tar.gz",
+    "people-names": "git://github.com/tedjt/people-names"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "should": "^3.3.0"
+  }
+}
