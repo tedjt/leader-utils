@@ -45,7 +45,6 @@ module.exports.getCompanyName = function(person) {
 /**
  * Get an interesting domain.
  *
- * @param {Object} context
  * @param {Object} person
  * @return {String}
  */
@@ -58,7 +57,7 @@ var getInterestingDomain = module.exports.getInterestingDomain = function(person
 };
 
 module.exports.getInterestingDomainStripped = function(person) {
-  var interestingDomain = getInterestingDomain(person, context);
+  var interestingDomain = getInterestingDomain(person);
   if (interestingDomain) {
     return strippedDomain(interestingDomain);
   } else {
