@@ -1,4 +1,4 @@
-getvar objcase = require('obj-case');
+var objcase = require('obj-case');
 var Levenshtein = require('levenshtein');
 
 module.exports.name = require('people-names');
@@ -79,7 +79,7 @@ var getCleanDomain = module.exports.getCleanDomain = function(url) {
     var hostname = url;
     var protocolIndex = url.indexOf('://');
     if (protocolIndex != -1) {
-      hostname = companyWebsite.substr(protocolIndex + 3);
+      hostname = hostname.substr(protocolIndex + 3);
     }
     // trim to just domain - remove rest of url.
     hostname = hostname.split('/')[0].trim();
