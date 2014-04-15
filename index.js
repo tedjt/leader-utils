@@ -1,4 +1,4 @@
-var objcase = require('obj-case');
+getvar objcase = require('obj-case');
 var Levenshtein = require('levenshtein');
 
 module.exports.name = require('people-names');
@@ -38,7 +38,7 @@ module.exports.fuzzifyNumberRange = function(inputString) {
 };
 
 
-module.exports.getCompanyName = function(person) {
+var getCompanyName = module.exports.getCompanyName = function(person) {
   return objcase(person, 'company.name');
 };
 
@@ -69,14 +69,19 @@ var strippedDomain = module.exports.strippedDomain = function(domain) {
   return domain.split('.').slice(0, -1).join('.');
 };
 
-module.exports.getCompanyDomain = function(person) {
+var getCompanyDomain = module.exports.getCompanyDomain = function(person) {
   var companyWebsite = objcase(person, 'company.website');
-  if (companyWebsite) {
-    var hostname = companyWebsite;
-    var protocolIndex = companyWebsite.indexOf('://');
+  return getCleanDomain(companyWebsite);
+};
+
+var getCleanDomain = module.exports.getCleanDomain = function(url) {
+  if (url) {
+    var hostname = url;
+    var protocolIndex = url.indexOf('://');
     if (protocolIndex != -1) {
       hostname = companyWebsite.substr(protocolIndex + 3);
     }
+    // trim to just domain - remove rest of url.
     hostname = hostname.split('/')[0].trim();
     // remove random things like blog. or www.
     // for this case we may be better off just blacklisting a few subdomains
@@ -95,6 +100,13 @@ module.exports.getCompanyDomain = function(person) {
   } else {
     return null;
   }
+};
+
+var getCompanySearchTerm = module.exports.getCompanySearchTerm = function(person) {
+  var company = getCompanyName(person);
+  var domain = lgetInterestingDomain(person);
+  var companyDomain = getCompanyDomain(person);
+  return companyDomain || domain || company;
 };
 
 var MAX_DIST = 7;
