@@ -104,7 +104,7 @@ var getCleanDomain = module.exports.getCleanDomain = function(url) {
 
 var getCompanySearchTerm = module.exports.getCompanySearchTerm = function(person) {
   var company = getCompanyName(person);
-  var domain = lgetInterestingDomain(person);
+  var domain = getInterestingDomain(person);
   var companyDomain = getCompanyDomain(person);
   return companyDomain || domain || company;
 };
