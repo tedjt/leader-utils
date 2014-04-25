@@ -152,6 +152,8 @@ describe('people-names', function () {
       assert(!utils.accurateTitle('TheLEADSTACK', 'stacklead.com'));
       assert(utils.accurateTitle('Haymarket Media Group', 'haymarket.com'));
       // this doesn't work as expected :()
+      assert(!utils.accurateTitle('SeaChange Pharmaceuticals, Inc', 'seachangepharma.com'));
+      // this doesn't work as expected :()
       assert(utils.accurateTitle('Zinc Digital Business Solutions Ltd', 'zinc.io'));
       assert(!utils.accurateTitle('www.qatar-index.com', 'index.com'));
       assert(utils.accurateTitle('Haymarket Media Group', 'haymarket media'));
