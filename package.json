@@ -17,9 +17,9 @@
   "author": "Ted Tomlinson",
   "license": "MIT",
   "dependencies": {
-    "obj-case": "git://github.com/tedjt/obj-case",
-    "levenshtein": "~1.0.4",
     "employee-count": "https://bitbucket.org/zumbino/employee-count/get/master.tar.gz",
+    "natural": "^0.1.27",
+    "obj-case": "git://github.com/tedjt/obj-case",
     "people-names": "git://github.com/tedjt/people-names"
   },
   "devDependencies": {

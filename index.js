@@ -1,5 +1,5 @@
 var objcase = require('obj-case');
-var Levenshtein = require('levenshtein');
+var natural = require('natural');
 
 module.exports.name = require('people-names');
 module.exports.objcase = objcase;
@@ -110,25 +110,37 @@ var getCompanySearchTerm = module.exports.getCompanySearchTerm = function(person
 };
 
 var MAX_DIST = 7;
-module.exports.accurateTitle = function(title, query, maxDistance) {
+var MIN_JARO = 0.8;
+module.exports.accurateTitle = function(title, query, maxDistance, minJaro) {
   maxDistance = maxDistance || MAX_DIST;
+  minJaro = minJaro || MIN_JARO;
   title = title.toLowerCase();
   query = query.toLowerCase();
-  var lev = new Levenshtein(title, query);
-  if (lev.distance < maxDistance) {
+  var jaro = natural.JaroWinklerDistance(title, query);
+  //console.log('action=jaro value=%d title=%s query=%s', jaro, title, query);
+  //console.log('action=lev value=%d title=%s query=%s', lev, title, query);
+  //var lev = natural.LevenshteinDistance(title, query);
+  //if (lev < maxDistance || jaro > minJaro) {
+  // jaro seems to do a good enough job - ignore lev for now.
+  if (jaro > minJaro) {
     return true;
   }
   // attempt to scan full title by token for our query term
+  /*
   var splitTitle = title.split(/\s+/);
   var splitQuery = query.split(/\s+/);
   if (splitTitle.length > 1 && splitTitle.length > splitQuery.length) {
     for (var i=0; i < splitTitle.length; i++) {
       var substr = splitTitle.slice(i, i+splitQuery.length).join(' ');
-      lev = new Levenshtein(query, substr);
-      if (lev.distance < maxDistance) {
+      lev = natural.LevenshteinDistance(substr, query);
+      jaro = natural.JaroWinklerDistance(query, substr);
+      console.log('action=jaro value=%d title=%s query=%s', jaro, substr, query);
+      console.log('action=lev value=%d title=%s query=%s', lev, substr, query);
+      if (lev < (maxDistance / 2)  || jaro > minJaro) {
         return true;
       }
     }
   }
+  */
   return false;
 };

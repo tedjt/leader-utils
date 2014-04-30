@@ -151,14 +151,23 @@ describe('people-names', function () {
     it('should accurately choose based on title', function() {
       assert(!utils.accurateTitle('TheLEADSTACK', 'stacklead.com'));
       assert(utils.accurateTitle('Haymarket Media Group', 'haymarket.com'));
-      // this doesn't work as expected :()
-      assert(!utils.accurateTitle('SeaChange Pharmaceuticals, Inc', 'seachangepharma.com'));
-      // this doesn't work as expected :()
-      assert(utils.accurateTitle('Zinc Digital Business Solutions Ltd', 'zinc.io'));
+      assert(!utils.accurateTitle('Zinc Digital Business Solutions Ltd', 'zinc.io'));
       assert(!utils.accurateTitle('www.qatar-index.com', 'index.com'));
       assert(utils.accurateTitle('Haymarket Media Group', 'haymarket media'));
+
+      assert(utils.accurateTitle('SeaChange Pharmaceuticals, Inc', 'seachangepharma.com'));
+      assert(utils.accurateTitle('SeaChange Pharmaceuticals, Inc', 'seachangepharma'));
+      assert(!utils.accurateTitle('Tractor Supply Company', 'operator.com'));
+      assert(!utils.accurateTitle('Tractor Supply Company', 'operator'));
+      assert(!utils.accurateTitle('Enlighten Up Coaching', 'heartdrop.co'));
+      assert(!utils.accurateTitle('www.qatar-index.com', 'index.com'));
+      assert(!utils.accurateTitle('Trimdownclub', 'webbege.com'));
+      assert(utils.accurateTitle('Machine Zone, Inc.', 'MachineZone'));
+      assert(utils.accurateTitle('Machine Zone, Inc.', 'MachineZone.com'));
+      assert(!utils.accurateTitle('Homes for sale in Franklin TN', 'Premier Pacific Group'));
+      assert(utils.accurateTitle('IGate', 'iGATE Patni'));
+      assert(utils.accurateTitle('Khosla', 'Khosla Ventures'));
     });
   });
-
 
 });
