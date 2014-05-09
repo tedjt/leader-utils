@@ -1,5 +1,7 @@
 var objcase = require('obj-case');
 var natural = require('natural');
+var tld = require('tld');
+var url = require('url');
 
 module.exports.name = require('people-names');
 module.exports.objcase = objcase;
@@ -76,27 +78,13 @@ var getCompanyDomain = module.exports.getCompanyDomain = function(person) {
 
 var getCleanDomain = module.exports.getCleanDomain = function(url) {
   if (url) {
-    var hostname = url;
+    var hostname = url.trim();
     var protocolIndex = url.indexOf('://');
     if (protocolIndex != -1) {
       hostname = hostname.substr(protocolIndex + 3);
     }
-    // trim to just domain - remove rest of url.
     hostname = hostname.split('/')[0].trim();
-    // remove random things like blog. or www.
-    // for this case we may be better off just blacklisting a few subdomains
-    // like www rather than aggressively triming to just two levels
-    if (hostname.split('.').length > 2) {
-      var splitHostname = hostname.split('.');
-      if (splitHostname.slice(-2)[0].length < 3) {
-        // e.g. somedomain.co.uk, asdf.co.jp
-        return splitHostname.slice(-3).join('.');
-      } else {
-        return splitHostname.slice(-2).join('.');
-      }
-    } else {
-      return hostname;
-    }
+    return tld.registered(hostname);
   } else {
     return null;
   }

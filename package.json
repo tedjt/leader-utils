@@ -20,7 +20,8 @@
     "employee-count": "https://bitbucket.org/zumbino/employee-count/get/master.tar.gz",
     "natural": "^0.1.27",
     "obj-case": "git://github.com/tedjt/obj-case",
-    "people-names": "git://github.com/tedjt/people-names"
+    "people-names": "git://github.com/tedjt/people-names",
+    "tld": "0.0.2"
   },
   "devDependencies": {
     "mocha": "~1.12.0",

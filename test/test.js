@@ -167,6 +167,8 @@ describe('people-names', function () {
       assert(!utils.accurateTitle('Homes for sale in Franklin TN', 'Premier Pacific Group'));
       assert(utils.accurateTitle('IGate', 'iGATE Patni'));
       assert(utils.accurateTitle('Khosla', 'Khosla Ventures'));
+      // expect domain modules to do their own filtering
+      assert(utils.accurateTitle('operator.com', 'Operation Sports'));
     });
   });
 
